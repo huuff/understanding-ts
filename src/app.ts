@@ -9,6 +9,10 @@ export class App {
     this.mainDiv.insertAdjacentElement("afterbegin", element);
   }
 
+  public append(element: HTMLElement) {
+    this.mainDiv.insertAdjacentElement("beforeend", element);
+  }
+
   public addProject(project: Project): void {
     this.projects.push(project);
 

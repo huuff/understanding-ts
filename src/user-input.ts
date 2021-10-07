@@ -10,6 +10,7 @@ export class UserInput {
   private descriptionInput: HTMLInputElement;
   private peopleInput: HTMLInputElement;
 
+  // TODO: shorthand initialization
   constructor(app: App) {
     this.app = app;
     this.form = this.render();
