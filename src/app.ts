@@ -16,11 +16,34 @@ function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
   };
 }
 
+class Project {
+  
+  constructor(
+    public title: string,
+    public description: string,
+    public people: number
+  ) {}
+
+  public static fromInput(
+    titleInput: HTMLInputElement,
+    descriptionInput: HTMLInputElement,
+    peopleInput: HTMLInputElement
+  ) {
+    return new Project(titleInput.value, descriptionInput.value, +peopleInput.value);
+  }
+
+  public validate(): void {
+    if (this.title.length === 0 || this.description.length === 0 || this.people === 0) {
+      throw new Error();
+    }
+  };
+}
+
 class UserInput {
   private form;
-  private titleInput;
-  private descriptionInput;
-  private peopleInput;
+  private titleInput: HTMLInputElement;
+  private descriptionInput: HTMLInputElement;
+  private peopleInput: HTMLInputElement;
 
   constructor(appContainer: AppContainer) {
     this.form = this.render(appContainer);
@@ -47,6 +70,13 @@ class UserInput {
   private submitHandler(event: Event) {
     event.preventDefault();
     console.log(`Tried to submit ${this.titleInput.value}`);
+
+    let newProject = Project.fromInput(this.titleInput, this.descriptionInput, this.peopleInput);
+    try {
+      newProject.validate();
+    } catch (error) {
+      alert("You did something wrong!");
+    }
   }
 
   private listen() {
