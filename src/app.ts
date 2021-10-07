@@ -6,6 +6,16 @@ class AppContainer {
   }
 }
 
+function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
+  return {
+    configurable: true,
+    get() {
+      const boundFunction = descriptor.value.bind(this);
+      return boundFunction;
+    }
+  };
+}
+
 class UserInput {
   private form;
   private titleInput;
@@ -33,12 +43,14 @@ class UserInput {
     return form;
   }
 
-  private listen() {
-    this.form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      console.log("Tried to submit!");
+  @Autobind
+  private submitHandler(event: Event) {
+    event.preventDefault();
+    console.log(`Tried to submit ${this.titleInput.value}`);
+  }
 
-    });
+  private listen() {
+    this.form.addEventListener("submit", this.submitHandler);
   }
 }
 
