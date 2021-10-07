@@ -19,11 +19,13 @@
       ];
     };
 
-    apps.dev = flake-utils.lib.mkApp {
-      drv = writeScriptBin "development-setup" ''
-        ${nodePackages.typescript}/bin&tsc -w &
-        ${nodePackages.npm} start
-      '';
+    apps.${system} = {
+      dev = flake-utils.lib.mkApp {
+        drv = writeScriptBin "development-setup" ''
+          ${nodePackages.typescript}/bin/tsc -w &
+          ${nodePackages.npm}/bin/npm start
+        '';
+      };
     };
   };
 }
