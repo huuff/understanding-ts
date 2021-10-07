@@ -4,8 +4,8 @@ import { App } from "./app.js";
 
 export class UserInput {
   // TODO: Can these be readonly?
-  private app;
-  private form;
+  private app: App;
+  private form: HTMLFormElement;
   private titleInput: HTMLInputElement;
   private descriptionInput: HTMLInputElement;
   private peopleInput: HTMLInputElement;
@@ -21,7 +21,7 @@ export class UserInput {
     this.listen();
   }
 
-  private render() {
+  private render(): HTMLFormElement {
     const template = document.getElementById("project-input")! as HTMLTemplateElement;
     const importedNode = document.importNode(template.content, true);
     const form = importedNode.firstElementChild as HTMLFormElement;
@@ -35,12 +35,12 @@ export class UserInput {
   @Autobind
   private submitHandler(event: Event) {
     event.preventDefault();
-    console.log(`Tried to submit ${this.titleInput.value}`);
 
     let newProject = Project.fromInput(this.titleInput, this.descriptionInput, this.peopleInput);
     try {
       newProject.validate();
       this.app.addProject(newProject);
+      this.form.reset();
     } catch (error) {
       alert("You did something wrong!");
     }
