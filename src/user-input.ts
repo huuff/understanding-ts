@@ -40,6 +40,7 @@ export class UserInput {
     let newProject = Project.fromInput(this.titleInput, this.descriptionInput, this.peopleInput);
     try {
       newProject.validate();
+      this.app.addProject(newProject);
     } catch (error) {
       alert("You did something wrong!");
     }
