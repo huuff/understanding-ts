@@ -4,4 +4,5 @@ import { ProjectList } from "./project-list.js";
 
 const app = new App();
 const userInput = new UserInput(app);
-const activeList = new ProjectList(app);
+const activeList = new ProjectList(app, "Active");
+const finishedList = new ProjectList(app, "Finished");
