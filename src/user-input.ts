@@ -1,6 +1,7 @@
 import { Autobind } from "./autobind.js";
 import { Project } from "./project.js";
 import { App } from "./app.js";
+import {InvalidInputError} from "./invalid-input-error.js";
 
 export class UserInput {
   private readonly form: HTMLFormElement;
@@ -40,7 +41,11 @@ export class UserInput {
       this.app.addProject(newProject);
       this.form.reset();
     } catch (error) {
-      alert("You did something wrong!");
+      if (error instanceof InvalidInputError) {
+        alert("You did something wrong!");
+      } else {
+        throw error;
+      }
     }
   }
 

@@ -1,3 +1,5 @@
+import { InvalidInputError } from './invalid-input-error.js';
+
 export class Project {
   constructor(
     public title: string,
@@ -15,7 +17,7 @@ export class Project {
 
   public validate(): void {
     if (this.title.length === 0 || this.description.length === 0 || this.people === 0) {
-      throw new Error();
+      throw new InvalidInputError();
     }
   };
 }
