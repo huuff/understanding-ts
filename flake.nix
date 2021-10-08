@@ -12,7 +12,7 @@
     pkgs = import nixpkgs { inherit system; };
   in with pkgs;
   {
-    devShell = mkShell {
+    devShell.${system} = mkShell {
       nativeBuildInputs = [
         nodePackages.npm
         nodePackages.typescript

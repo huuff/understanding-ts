@@ -3,12 +3,11 @@ import { Project } from "./project.js";
 import { App } from "./app.js";
 
 export class UserInput {
-  // TODO: Can these be readonly?
-  private app: App;
-  private form: HTMLFormElement;
-  private titleInput: HTMLInputElement;
-  private descriptionInput: HTMLInputElement;
-  private peopleInput: HTMLInputElement;
+  private readonly app: App;
+  private readonly form: HTMLFormElement;
+  private readonly titleInput: HTMLInputElement;
+  private readonly descriptionInput: HTMLInputElement;
+  private readonly peopleInput: HTMLInputElement;
 
   // TODO: shorthand initialization
   constructor(app: App) {
