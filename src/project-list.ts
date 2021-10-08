@@ -12,6 +12,12 @@ export class ProjectList implements Observer {
     this.render();
   }
 
+  public observeNewProject(project: Project): void {
+    this.projects.push(project); 
+    this.reset();
+    console.log(`${this.id} is observed ${JSON.stringify(project)}`);
+  }
+
   private render(): HTMLElement {
     const template = document.getElementById("project-list")! as HTMLTemplateElement;
     const importedNode = document.importNode(template.content, true);
@@ -30,9 +36,7 @@ export class ProjectList implements Observer {
     const list: HTMLUListElement = element.querySelector("ul")! as HTMLUListElement;
     
     for (const project of this.projects) {
-      let projectElement = document.createElement("li");
-      projectElement.textContent = project.title;
-      list.appendChild(projectElement)
+      list.appendChild(project.getRendered());
     }
   }
 
@@ -41,9 +45,4 @@ export class ProjectList implements Observer {
     this.render();
   }
 
-  public observeNewProject(project: Project): void {
-    this.projects.push(project); 
-    this.reset()
-    console.log(`${this.id} is observed ${JSON.stringify(project)}`);
-  }
 };

@@ -20,4 +20,13 @@ export class Project {
       throw new InvalidInputError();
     }
   };
+
+  public getRendered(): HTMLLIElement {
+    const text = `${this.title}: ${this.description}. People: ${this.people}`;
+
+    const listItem = document.createElement("li");
+    listItem.textContent = text;
+
+    return listItem;
+  }
 }
