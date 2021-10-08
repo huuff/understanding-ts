@@ -22,8 +22,7 @@ export class UserInput {
   }
 
   private render(): HTMLFormElement {
-    const form = importTemplate<HTMLFormElement>("project-input");
-    form.id = "user-input";
+    const form = importTemplate<HTMLFormElement>("project-input", "user-input");
 
     this.app.prepend(form);
 

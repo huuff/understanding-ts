@@ -20,8 +20,7 @@ export class ProjectList implements Observer {
   }
 
   private render(): HTMLElement {
-    const listParent = importTemplate<HTMLUListElement>("project-list");
-    listParent.id = this.id;
+    const listParent = importTemplate<HTMLUListElement>("project-list", this.id);
     listParent.querySelector("h2")!.textContent = this.name;
 
     this.renderAllProjects(listParent)
