@@ -3,14 +3,12 @@ import { Project } from "./project.js";
 import { App } from "./app.js";
 
 export class UserInput {
-  private readonly app: App;
   private readonly form: HTMLFormElement;
   private readonly titleInput: HTMLInputElement;
   private readonly descriptionInput: HTMLInputElement;
   private readonly peopleInput: HTMLInputElement;
 
-  // TODO: shorthand initialization
-  constructor(app: App) {
+  constructor(private readonly app: App) {
     this.app = app;
     this.form = this.render();
 
