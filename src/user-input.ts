@@ -1,7 +1,8 @@
 import { Autobind } from "./autobind.js";
 import { Project } from "./project.js";
 import { App } from "./app.js";
-import {InvalidInputError} from "./invalid-input-error.js";
+import { InvalidInputError } from "./invalid-input-error.js";
+import { importTemplate } from "./import-template.js";
 
 export class UserInput {
   private readonly form: HTMLFormElement;
@@ -21,9 +22,7 @@ export class UserInput {
   }
 
   private render(): HTMLFormElement {
-    const template = document.getElementById("project-input")! as HTMLTemplateElement;
-    const importedNode = document.importNode(template.content, true);
-    const form = importedNode.firstElementChild as HTMLFormElement;
+    const form = importTemplate<HTMLFormElement>("project-input");
     form.id = "user-input";
 
     this.app.prepend(form);

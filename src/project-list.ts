@@ -1,6 +1,7 @@
 import { App } from './app.js';
 import { Observer } from './observer.js';
 import { Project } from './project.js';
+import { importTemplate } from './import-template.js';
 
 export class ProjectList implements Observer {
   private readonly projects: Project[] = [];
@@ -19,9 +20,7 @@ export class ProjectList implements Observer {
   }
 
   private render(): HTMLElement {
-    const template = document.getElementById("project-list")! as HTMLTemplateElement;
-    const importedNode = document.importNode(template.content, true);
-    const listParent = importedNode.firstElementChild as HTMLElement;
+    const listParent = importTemplate<HTMLUListElement>("project-list");
     listParent.id = this.id;
     listParent.querySelector("h2")!.textContent = this.name;
 
