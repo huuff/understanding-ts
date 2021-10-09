@@ -21,7 +21,7 @@ export class UserInput extends Component<HTMLFormElement> {
       (this.element.querySelector("#title")! as HTMLInputElement).value, 
       (this.element.querySelector("#description")! as HTMLInputElement).value,
       +(this.element.querySelector("#people")! as HTMLInputElement).value,
-      "active"
+      "Active"
     );
       console.log(`New project ${JSON.stringify(newProject)}`)
       this.app.addProject(newProject);

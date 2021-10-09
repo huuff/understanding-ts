@@ -1,1 +1,1 @@
-export type ProjectStatus = "active" | "finished"
+export type ProjectStatus = "Active" | "Finished"
