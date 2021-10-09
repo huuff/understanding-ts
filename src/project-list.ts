@@ -1,9 +1,13 @@
 import {Component} from './component.js';
 import {Autobind} from './autobind.js';
 import {ProjectStatus} from './project-status.js';
+import { App } from './app.js';
 
 export class ProjectList extends Component<HTMLUListElement> {
-  constructor(private readonly status: ProjectStatus) {
+  constructor(
+    private readonly app: App,
+    private readonly status: ProjectStatus
+  ) {
     super("app", "project-list", ProjectList.getId(status))
     this.addRenderHook(this.setHeader);
     this.addRenderHook(this.setContentsId);
@@ -31,13 +35,17 @@ export class ProjectList extends Component<HTMLUListElement> {
   }
 
   @Autobind
-  private dragOverHandler(_: DragEvent): void {
-    this.element.querySelector("ul")!.classList.add("droppable");
+  private dragOverHandler(event: DragEvent): void {
+    if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
+      event.preventDefault();
+      this.element.querySelector("ul")!.classList.add("droppable");
+    }
   }
 
   @Autobind
   private dropHandler(event: DragEvent): void {
-
+    const droppedProjectId = event.dataTransfer!.getData("text/plain");
+    this.app.setProjectStatus(droppedProjectId, this.status);
   }
 
   @Autobind

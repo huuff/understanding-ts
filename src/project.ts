@@ -24,6 +24,11 @@ export class Project extends Component<HTMLLIElement> {
     this.addRenderHook(() => this.element.addEventListener("dragend", this.dragEndHandler));
   }
 
+  public setStatus(newStatus: ProjectStatus): void {
+    this.status = newStatus;
+    this.containerId = ProjectList.getContentsId(newStatus);
+  }
+
   @Autobind
   private setContents(): void {
     this.element.querySelector("h2")!.textContent = this.title;
@@ -33,7 +38,8 @@ export class Project extends Component<HTMLLIElement> {
 
   @Autobind
   private dragStartHandler(event: DragEvent): void {
-    console.log(event);
+    event.dataTransfer!.setData("text/plain", this.elementId);
+    event.dataTransfer!.effectAllowed = 'move';
   }
 
   @Autobind

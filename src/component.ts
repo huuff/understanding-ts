@@ -4,9 +4,9 @@ export abstract class Component<T extends HTMLElement> {
   protected element!: T;
   
   constructor(
-    private containerId: string, 
+    protected containerId: string, 
     templateId: string,
-    private readonly elementId: string) {
+    public readonly elementId: string) {
     this.template = document.getElementById(templateId)! as HTMLTemplateElement;
   }
 
@@ -16,6 +16,7 @@ export abstract class Component<T extends HTMLElement> {
 
     this.element = document.importNode(this.template.content, true).firstElementChild as T;
     this.element.id = this.elementId;
+    console.log(`Appending ${this.elementId} to ${this.containerId}`)
     document.getElementById(this.containerId)!.appendChild(this.element);
     this.renderHooks.forEach((hook) => hook());
   }
