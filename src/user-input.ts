@@ -16,14 +16,14 @@ export class UserInput extends Component<HTMLFormElement> {
   private submitHandler(event: Event) {
     event.preventDefault();
 
-    let newProject = Project.fromInput(
-      this.element.querySelector("#title")! as HTMLInputElement, 
-      this.element.querySelector("#description")! as HTMLInputElement,
-      this.element.querySelector("#people")! as HTMLInputElement
-    );
     try {
+    let newProject = new Project(
+      (this.element.querySelector("#title")! as HTMLInputElement).value, 
+      (this.element.querySelector("#description")! as HTMLInputElement).value,
+      +(this.element.querySelector("#people")! as HTMLInputElement).value,
+      "active"
+    );
       console.log(`New project ${JSON.stringify(newProject)}`)
-      newProject.validate();
       this.app.addProject(newProject);
       this.element?.reset();
     } catch (error) {
