@@ -20,6 +20,8 @@ export class Project extends Component<HTMLLIElement> {
     }
 
     this.addRenderHook(this.setContents);
+    this.addRenderHook(() => this.element.addEventListener("dragstart", this.dragStartHandler));
+    this.addRenderHook(() => this.element.addEventListener("dragend", this.dragEndHandler));
   }
 
   @Autobind
@@ -27,5 +29,15 @@ export class Project extends Component<HTMLLIElement> {
     this.element.querySelector("h2")!.textContent = this.title;
     this.element.querySelector("h3")!.textContent = `${this.people.toString()} Persons assigned`;
     this.element.querySelector("p")!.textContent = this.description;
+  }
+
+  @Autobind
+  private dragStartHandler(event: DragEvent): void {
+    console.log(event);
+  }
+
+  @Autobind
+  private dragEndHandler(event: DragEvent): void {
+    console.log(event);
   }
 }
