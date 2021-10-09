@@ -20,7 +20,6 @@ export class ProjectList extends Component<HTMLUListElement> implements Observer
 
   @Autobind
   public renderProjects(): void {
-    console.log("hi")
     this.element.querySelector("h2")!.textContent = this.name;
 
     // TODO: This in the project component render method
