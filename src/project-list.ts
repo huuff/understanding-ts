@@ -2,6 +2,7 @@ import { App } from './app.js';
 import { Observer } from './observer.js';
 import { Project } from './project.js';
 import {Component} from './component.js';
+import {Autobind} from './autobind.js';
 
 export class ProjectList extends Component<HTMLUListElement> implements Observer {
   private readonly projects: Project[] = [];
@@ -9,7 +10,7 @@ export class ProjectList extends Component<HTMLUListElement> implements Observer
   constructor(private readonly app: App, private readonly name: string) {
     super("app", "project-list", `${name.toLowerCase()}-projects`)
     app.registerObserver(this);
-    this.addRenderHook(this.renderProjects.bind(this))
+    this.addRenderHook(this.renderProjects)
   }
 
   public observeNewProject(project: Project): void {
@@ -17,6 +18,7 @@ export class ProjectList extends Component<HTMLUListElement> implements Observer
     this.render();
   }
 
+  @Autobind
   public renderProjects(): void {
     console.log("hi")
     this.element.querySelector("h2")!.textContent = this.name;
