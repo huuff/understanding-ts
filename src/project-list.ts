@@ -16,7 +16,7 @@ export class ProjectList extends Component<HTMLUListElement> {
 
     // TODO: This in the project component render method
     this.app.projects.filter(project => project.status === this.status).forEach((project) => {
-      this.element.appendChild(project.getRendered());
+      this.element.querySelector("ul")?.appendChild(project.getRendered());
     })
   }
 };
