@@ -17,14 +17,13 @@ export class ProjectList extends Component<HTMLUListElement> {
     return `${ProjectList.getId(status)}-ul`
   }
 
-  // TODO: can these be private?
   @Autobind
-  public setHeader(): void {
+  private setHeader(): void {
     this.element.querySelector("h2")!.textContent = this.status;
   }
 
   @Autobind
-  public setContentsId(): void {
+  private setContentsId(): void {
     this.element.querySelector("ul")!.id = ProjectList.getContentsId(this.status);
   }
 };
