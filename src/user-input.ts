@@ -5,27 +5,24 @@ import { InvalidInputError } from "./invalid-input-error.js";
 import {Component} from "./component.js";
 
 export class UserInput extends Component<HTMLFormElement> {
-  private readonly titleInput: HTMLInputElement;
-  private readonly descriptionInput: HTMLInputElement;
-  private readonly peopleInput: HTMLInputElement;
-
   constructor(private readonly app: App) {
     super("app", "project-input", "user-input");
     this.app = app;
 
-    this.titleInput = document.getElementById("title")! as HTMLInputElement;
-    this.descriptionInput = document.getElementById("description")! as HTMLInputElement;
-    this.peopleInput = document.getElementById("people")! as HTMLInputElement;
-
-    this.listen();
+    this.addRenderHook(this.listen.bind(this))
   }
 
   @Autobind
   private submitHandler(event: Event) {
     event.preventDefault();
 
-    let newProject = Project.fromInput(this.titleInput, this.descriptionInput, this.peopleInput);
+    let newProject = Project.fromInput(
+      this.element.querySelector("#title")! as HTMLInputElement, 
+      this.element.querySelector("#description")! as HTMLInputElement,
+      this.element.querySelector("#people")! as HTMLInputElement
+    );
     try {
+      console.log(`New project ${JSON.stringify(newProject)}`)
       newProject.validate();
       this.app.addProject(newProject);
       this.element?.reset();
@@ -38,7 +35,7 @@ export class UserInput extends Component<HTMLFormElement> {
     }
   }
 
-  // TODO: Inline in constructor
+  @Autobind
   private listen() {
     this.element?.addEventListener("submit", this.submitHandler);
   }
