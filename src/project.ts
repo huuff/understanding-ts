@@ -4,6 +4,8 @@ import {ProjectStatus} from './project-status.js';
 import { ProjectList } from './project-list.js';
 import {Autobind} from './autobind.js';
 
+// TODO: Showing 1 person assigned when only 1
+
 export class Project extends Component<HTMLLIElement> {
   constructor(
     public readonly title: string,
@@ -16,11 +18,13 @@ export class Project extends Component<HTMLLIElement> {
       throw new InvalidInputError();
     }
 
-    this.addRenderHook(() => this.element.textContent = this.getContent() );
+    this.addRenderHook(this.setContents);
   }
 
   @Autobind
-  private getContent(): string {
-    return `${this.title}: ${this.description}. People: ${this.people}`;
+  private setContents(): void {
+    this.element.querySelector("h2")!.textContent = this.title;
+    this.element.querySelector("h3")!.textContent = `${this.people.toString()} Persons assigned`;
+    this.element.querySelector("p")!.textContent = this.description;
   }
 }
