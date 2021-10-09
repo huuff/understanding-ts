@@ -1,5 +1,4 @@
 import { App } from './app.js';
-import { Project } from './project.js';
 import {Component} from './component.js';
 import {Autobind} from './autobind.js';
 import {ProjectStatus} from './project-status.js';
