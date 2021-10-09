@@ -11,7 +11,7 @@ export class Project extends Component<HTMLLIElement> {
     public readonly people: number,
     public status: ProjectStatus
   ) {
-    super(ProjectList.getId(status), "single-project", Math.random().toString());
+    super(ProjectList.getContentsId(status), "single-project", Math.random().toString());
     if (this.title.length === 0 || this.description.length === 0 || this.people === 0) {
       throw new InvalidInputError();
     }
