@@ -5,6 +5,7 @@ import { ProjectList } from './project-list.js';
 import {Autobind} from './autobind.js';
 
 // TODO: Showing 1 person assigned when only 1
+// TODO: telling exactly what's wrong in the error
 
 export class Project extends Component<HTMLLIElement> {
   constructor(
