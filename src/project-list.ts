@@ -7,6 +7,9 @@ export class ProjectList extends Component<HTMLUListElement> {
     super("app", "project-list", ProjectList.getId(status))
     this.addRenderHook(this.setHeader);
     this.addRenderHook(this.setContentsId);
+    this.addRenderHook(() => this.element.addEventListener("dragover", this.dragOverHandler))
+    this.addRenderHook(() => this.element.addEventListener("drop", this.dropHandler))
+    this.addRenderHook(() => this.element.addEventListener("dragleave", this.dragLeaveHandler))
   }
 
   private static getId(status: ProjectStatus): string {
@@ -25,5 +28,20 @@ export class ProjectList extends Component<HTMLUListElement> {
   @Autobind
   private setContentsId(): void {
     this.element.querySelector("ul")!.id = ProjectList.getContentsId(this.status);
+  }
+
+  @Autobind
+  private dragOverHandler(_: DragEvent): void {
+    this.element.querySelector("ul")!.classList.add("droppable");
+  }
+
+  @Autobind
+  private dropHandler(event: DragEvent): void {
+
+  }
+
+  @Autobind
+  private dragLeaveHandler(_: DragEvent): void {
+    this.element.querySelector("ul")!.classList.remove("droppable")
   }
 };
