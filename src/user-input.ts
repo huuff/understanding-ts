@@ -1,8 +1,8 @@
-import { Autobind } from "./autobind.js";
-import { Project } from "./project.js";
-import { App } from "./app.js";
-import { InvalidInputError } from "./invalid-input-error.js";
-import {Component} from "./component.js";
+import { Autobind } from "./autobind";
+import { Project } from "./project";
+import { App } from "./app";
+import { InvalidInputError } from "./invalid-input-error";
+import {Component} from "./component";
 
 export class UserInput extends Component<HTMLFormElement> {
   constructor(private readonly app: App) {

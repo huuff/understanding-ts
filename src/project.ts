@@ -1,8 +1,8 @@
-import {Component} from './component.js';
-import { InvalidInputError } from './invalid-input-error.js';
-import {ProjectStatus} from './project-status.js';
-import { ProjectList } from './project-list.js';
-import {Autobind} from './autobind.js';
+import {Component} from './component';
+import { InvalidInputError } from './invalid-input-error';
+import {ProjectStatus} from './project-status';
+import { ProjectList } from './project-list';
+import {Autobind} from './autobind';
 
 // TODO: Showing 1 person assigned when only 1
 // TODO: telling exactly what's wrong in the error
@@ -42,8 +42,8 @@ export class Project extends Component<HTMLLIElement> {
     event.dataTransfer!.effectAllowed = 'move';
   }
 
+  // TODO: Unused? or did I do something wrong?
   @Autobind
   private dragEndHandler(event: DragEvent): void {
-    console.log(event);
   }
 }

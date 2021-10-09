@@ -1,7 +1,7 @@
-import {Component} from './component.js';
-import {Autobind} from './autobind.js';
-import {ProjectStatus} from './project-status.js';
-import { App } from './app.js';
+import {Component} from './component';
+import {Autobind} from './autobind';
+import {ProjectStatus} from './project-status';
+import { App } from './app';
 
 export class ProjectList extends Component<HTMLUListElement> {
   constructor(
@@ -44,6 +44,7 @@ export class ProjectList extends Component<HTMLUListElement> {
 
   @Autobind
   private dropHandler(event: DragEvent): void {
+    event.preventDefault();
     const droppedProjectId = event.dataTransfer!.getData("text/plain");
     this.app.setProjectStatus(droppedProjectId, this.status);
   }

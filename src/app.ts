@@ -1,6 +1,6 @@
-import {Component} from "./component.js";
-import {ProjectStatus} from "./project-status.js";
-import {Project} from "./project.js";
+import {Component} from "./component";
+import {ProjectStatus} from "./project-status";
+import {Project} from "./project";
 
 export class App {
   private components: Component<any>[] = [];
