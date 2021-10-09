@@ -1,12 +1,13 @@
 export abstract class Component<T extends HTMLElement> {
   private readonly template: HTMLTemplateElement;
-  private readonly container: HTMLElement;
   private readonly renderHooks: (() => void)[] = [];
   protected element!: T;
   
-  constructor(containerId: string, templateId: string, private readonly elementId: string) {
+  constructor(
+    private containerId: string, 
+    templateId: string,
+    private readonly elementId: string) {
     this.template = document.getElementById(templateId)! as HTMLTemplateElement;
-    this.container = document.getElementById(containerId)!;
     this.render();
   }
 
@@ -16,7 +17,7 @@ export abstract class Component<T extends HTMLElement> {
 
     this.element = document.importNode(this.template.content, true).firstElementChild as T;
     this.element.id = this.elementId;
-    this.container.appendChild(this.element);
+    document.getElementById(this.containerId)!.appendChild(this.element);
     this.renderHooks.forEach((hook) => hook());
   }
 
