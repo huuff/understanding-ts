@@ -17,14 +17,13 @@ export class UserInput extends Component<HTMLFormElement> {
     event.preventDefault();
 
     try {
-    let newProject = new Project(
-      (this.element.querySelector("#title")! as HTMLInputElement).value, 
-      (this.element.querySelector("#description")! as HTMLInputElement).value,
-      +(this.element.querySelector("#people")! as HTMLInputElement).value,
-      "Active"
-    );
-      console.log(`New project ${JSON.stringify(newProject)}`)
-      this.app.addProject(newProject);
+      let newProject = new Project(
+        (this.element.querySelector("#title")! as HTMLInputElement).value, 
+        (this.element.querySelector("#description")! as HTMLInputElement).value,
+        +(this.element.querySelector("#people")! as HTMLInputElement).value,
+        "Active"
+      );
+      this.app.addComponent(newProject);
       this.element?.reset();
     } catch (error) {
       if (error instanceof InvalidInputError) {

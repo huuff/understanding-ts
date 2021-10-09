@@ -8,7 +8,6 @@ export abstract class Component<T extends HTMLElement> {
     templateId: string,
     private readonly elementId: string) {
     this.template = document.getElementById(templateId)! as HTMLTemplateElement;
-    this.render();
   }
 
   public render(): void {
@@ -24,6 +23,5 @@ export abstract class Component<T extends HTMLElement> {
   // TODO: This in constructor? it's a less mutable approach
   public addRenderHook(hook: () => void): void {
     this.renderHooks.push(hook);
-    this.render()
   }
 }

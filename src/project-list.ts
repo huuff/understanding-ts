@@ -5,17 +5,16 @@ import {ProjectStatus} from './project-status.js';
 
 export class ProjectList extends Component<HTMLUListElement> {
   constructor(private readonly app: App, private readonly status: ProjectStatus) {
-    super("app", "project-list", `${status.toLowerCase()}-projects`)
-    this.addRenderHook(this.renderProjects)
+    super("app", "project-list", ProjectList.getId(status))
+    this.addRenderHook(this.setHeader);
+  }
+
+  public static getId(status: ProjectStatus): string {
+    return `${status.toLowerCase()}-projects`;
   }
 
   @Autobind
-  public renderProjects(): void {
+  public setHeader(): void {
     this.element.querySelector("h2")!.textContent = this.status;
-
-    // TODO: This in the project component render method
-    this.app.projects.filter(project => project.status === this.status).forEach((project) => {
-      this.element.querySelector("ul")?.appendChild(project.getRendered());
-    })
   }
 };
