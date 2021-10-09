@@ -1,10 +1,9 @@
-import { App } from './app.js';
 import {Component} from './component.js';
 import {Autobind} from './autobind.js';
 import {ProjectStatus} from './project-status.js';
 
 export class ProjectList extends Component<HTMLUListElement> {
-  constructor(private readonly app: App, private readonly status: ProjectStatus) {
+  constructor(private readonly status: ProjectStatus) {
     super("app", "project-list", ProjectList.getId(status))
     this.addRenderHook(this.setHeader);
   }
