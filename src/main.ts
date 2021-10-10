@@ -1,3 +1,4 @@
+require('./app.css');
 import { App } from "./app"
 import { UserInput } from "./user-input";
 import { ProjectList } from "./project-list";

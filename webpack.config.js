@@ -1,4 +1,5 @@
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   entry: './src/main.ts',
@@ -14,6 +15,10 @@ module.exports = {
         test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: [ { loader: 'style-loader' }, { loader: 'css-loader' } ]
       }
     ]
   },
@@ -24,5 +29,8 @@ module.exports = {
     static: path.join(__dirname, "dist"),
     historyApiFallback: true,
     hot: true
-  }
+  }, 
+  plugins: [ new HtmlWebpackPlugin({
+    template: 'src/index.html'
+  }) ]
 };
