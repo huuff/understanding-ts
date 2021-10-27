@@ -1,5 +1,7 @@
-import { Form } from "./form"
+import { Form } from "./form";
+import { State } from "./state";
 
-console.log("it's alive!")
+console.log("Started Project Manager")
 
-const form = new Form("userInput");
+const state = new State();
+const form = new Form(state, "userInput");
