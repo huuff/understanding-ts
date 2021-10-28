@@ -27,6 +27,7 @@ export class Project {
     element.querySelector("h2")!.innerText = this.name;
     element.querySelector("h3")!.innerText = `${this.assignedPeople} assigned`
     element.querySelector("p")!.innerText = this.description;
+    element.addEventListener("dragstart", this.dragStartHandler)
     return element;
   }
 
@@ -34,6 +35,7 @@ export class Project {
   private dragStartHandler(event: DragEvent): void {
     event.dataTransfer!.setData("text/plain", this.component.element.id);
     event.dataTransfer!.effectAllowed = "move";
+    console.log(`Started dragging ${this.name}`);
   }
 
   private randomId() {
