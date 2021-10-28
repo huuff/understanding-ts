@@ -24,6 +24,7 @@ export class Form {
     const assignedPeopleElement = this.component.element.elements.namedItem("people") as HTMLInputElement;
 
     const project = new Project(
+      this.app,
       projectNameElement.value,
       descriptionElement.value,
       +assignedPeopleElement.value
