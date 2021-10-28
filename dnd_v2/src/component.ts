@@ -3,7 +3,7 @@ type InitializeElement<ElementType> = (baseElement: ElementType) => ElementType;
 export class Component<ElementType extends HTMLElement> {
 
   constructor(
-    private readonly parentId: string,
+    public parentId: string,
     private readonly templateId: string,
     private readonly elementId: string
   ) {

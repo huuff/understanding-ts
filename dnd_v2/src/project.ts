@@ -6,6 +6,7 @@ import {Autobind} from './autobind';
 export class Project {
   private status: ProjectStatus;
   private component: Component<HTMLLIElement>;
+  public readonly id: string;
 
   constructor(
     private readonly app: App,
@@ -14,16 +15,23 @@ export class Project {
     private readonly assignedPeople: number
   ) {
     this.status = ProjectStatus.ACTIVE;
+    this.id = this.randomId();
     this.component = new Component(
       this.app.getProjectList(this.status).id,
       "projectTemplate",
-      this.randomId()
+      this.id
     )
-    this.component.render(this.initializeProjectElement);
+    this.component.render(this.initialize);
+  }
+
+  public setStatus(newStatus: ProjectStatus): void {
+    this.status = newStatus;
+    this.component.parentId = this.app.getProjectList(newStatus).id;
+    this.component.render(this.initialize);
   }
 
   @Autobind
-  private initializeProjectElement(element: HTMLLIElement): HTMLLIElement {
+  private initialize(element: HTMLLIElement): HTMLLIElement {
     element.querySelector("h2")!.innerText = this.name;
     element.querySelector("h3")!.innerText = `${this.assignedPeople} assigned`
     element.querySelector("p")!.innerText = this.description;
@@ -33,7 +41,7 @@ export class Project {
 
   @Autobind
   private dragStartHandler(event: DragEvent): void {
-    event.dataTransfer!.setData("text/plain", this.component.element.id);
+    event.dataTransfer!.setData("text/plain", this.id);
     event.dataTransfer!.effectAllowed = "move";
     console.log(`Started dragging ${this.name}`);
   }

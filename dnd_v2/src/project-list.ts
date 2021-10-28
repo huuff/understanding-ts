@@ -47,6 +47,7 @@ export class ProjectList {
   private dropHandler(event: DragEvent): void {
     event.preventDefault();
     const droppedProjectId = event.dataTransfer!.getData("text/plain");
+    this.app.setProjectStatus(droppedProjectId, this.projectStatus);
     console.log(`Dropped ${droppedProjectId} in ${this.projectStatus} list`)
     this.component.element.classList.remove("drag-over");
   }

@@ -20,4 +20,8 @@ export class App {
   public getProjectList(status: ProjectStatus) {
     return this.projectLists[status];
   }
+
+  public setProjectStatus(projectId: string, newStatus: ProjectStatus) {
+    this.projects.filter(p => p.id === projectId)[0].setStatus(newStatus);
+  }
 }
