@@ -1,6 +1,7 @@
 import { ProjectStatus } from './project-status';
 import { Component } from './component';
 import {App} from './app';
+import {Autobind} from './autobind';
 
 export class Project {
   private status: ProjectStatus;
@@ -18,9 +19,10 @@ export class Project {
       "projectTemplate",
       this.randomId()
     )
-    this.component.render(this.initializeProjectElement.bind(this));
+    this.component.render(this.initializeProjectElement);
   }
 
+  @Autobind
   private initializeProjectElement(element: HTMLLIElement): HTMLLIElement {
     element.querySelector("h2")!.innerText = this.name;
     element.querySelector("h3")!.innerText = `${this.assignedPeople} assigned`

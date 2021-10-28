@@ -1,6 +1,7 @@
 import { App } from "./app";
 import { Project } from "./project";
 import { Component } from "./component";
+import {Autobind} from "./autobind";
 
 export class Form {
   private readonly component: Component<HTMLFormElement>;
@@ -8,10 +9,10 @@ export class Form {
   constructor(private readonly app: App) {
     this.component = new Component("userInputLocation", "userInputTemplate", "userInput");
     
-    // TODO: autobind
-    this.component.render(this.addSubmitListener.bind(this))
+    this.component.render(this.addSubmitListener)
   }
 
+  @Autobind
   private addSubmitListener(element: HTMLFormElement): HTMLFormElement {
     element.addEventListener("submit", this.submit.bind(this))
     return element;
