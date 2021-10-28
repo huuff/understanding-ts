@@ -30,6 +30,12 @@ export class Project {
     return element;
   }
 
+  @Autobind
+  private dragStartHandler(event: DragEvent): void {
+    event.dataTransfer!.setData("text/plain", this.component.element.id);
+    event.dataTransfer!.effectAllowed = "move";
+  }
+
   private randomId() {
     return "project" + Math.floor(Math.random() * 1000000).toString();
   }
