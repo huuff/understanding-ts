@@ -14,10 +14,11 @@ export class Form {
 
   @Autobind
   private addSubmitListener(element: HTMLFormElement): HTMLFormElement {
-    element.addEventListener("submit", this.submit.bind(this))
+    element.addEventListener("submit", this.submit)
     return element;
   }
 
+  @Autobind
   private submit(e: Event): void {
     e.preventDefault();
     const projectNameElement = this.component.element.elements.namedItem("name") as HTMLInputElement;
