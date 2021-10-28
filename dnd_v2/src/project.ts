@@ -22,7 +22,9 @@ export class Project {
   }
 
   private initializeProjectElement(element: HTMLLIElement): HTMLLIElement {
-    element.innerText = this.name;
+    element.querySelector("h2")!.innerText = this.name;
+    element.querySelector("h3")!.innerText = `${this.assignedPeople} assigned`
+    element.querySelector("p")!.innerText = this.description;
     return element;
   }
 
