@@ -14,7 +14,7 @@ export class Form {
   submit(e: Event): void {
     e.preventDefault();
     const projectNameElement: HTMLInputElement = this.element.elements.namedItem("name") as HTMLInputElement;
-    const project = new Project(projectNameElement.value, null, null);
+    const project = new Project(projectNameElement.value, "", 0);
 
     this.state.addProject(project)
 
