@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form } from "./form";
 import { App } from "./app";
 

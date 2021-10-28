@@ -8,37 +8,46 @@
 
   <body>
     <template id="userInputTemplate">
-      <form>
-        <div>
-          <label for="name">Name</label>
-          <input type="text" name="name">
+      <form class="mx-5">
+        <div class="row align-items-center mb-2">
+          <label class="col-lg-3" for="name">Name</label>
+          <input type="text" name="name" class="form-control col">
         </div>
-        <div>
-          <label for="description">Description</label>
-          <textarea autocomplete="off" rows=5 name="description"></textarea>
+        <div class="row align-items-center mb-2">
+          <label class="col-lg-3" for="description">Description</label>
+          <textarea class="col form-control" autocomplete="off" rows=5 name="description"></textarea>
         </div>
-        <div>
-          <label for="people">Assigned persons</label>
-          <input type="number" name="people">
+        <div class="row align-items-center mb-2">
+          <label class="col-lg-3" for="people">Assigned persons</label>
+          <input class="col form-control" type="number" name="people">
         </div>
-        <button type="submit">Submit</button>
+        <div class="d-flex justify-content-center mb-3">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
       </form>
     </template>
 
     <template id="projectListTemplate">
-      <ul>
+      <ul class="list-group col-lg my-2">
+        <li class="list-group-item text-muted text-center"></li>
       </ul>
     </template>
 
     <template id="projectTemplate">
-      <li>
+      <li class="list-group-item">
       </li>
     </template>
-    <div id="userInputLocation">
-    <!-- TS will insert the form here -->
-    </div>
-    <div id="projectListsLocation">
-    <!-- TS will insert the project lists here -->
-    </div>
+    <main class="row mt-4">
+      <div class="col-3"></div>
+      <div class="col">
+        <div id="userInputLocation">
+          <!-- TS will insert the form here -->
+        </div>
+        <div id="projectListsLocation" class="row d-flex justify-content-between">
+          <!-- TS will insert the project lists here -->
+        </div>
+      </div>
+      <div class="col-3"></div>
+    </main>
   </body>
 </html>
