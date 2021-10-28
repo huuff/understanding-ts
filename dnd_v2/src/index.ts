@@ -1,7 +1,7 @@
 import { Form } from "./form";
-import { State } from "./state";
+import { App } from "./app";
 
 console.log("Started Project Manager")
 
-const state = new State();
-const form = new Form(state, "userInput");
+const app = new App();
+const form = new Form(app);

@@ -1,24 +1,36 @@
-import { State } from "./state";
+import { App } from "./app";
 import { Project } from "./project";
+import { Component } from "./component";
 
 export class Form {
-  private readonly element: HTMLFormElement;
+  private readonly component: Component<HTMLFormElement>;
 
-  constructor(private readonly state: State, id: string) {
-    this.element = document.querySelector(`#${id}`) as HTMLFormElement;
+  constructor(private readonly app: App) {
+    this.component = new Component("userInputLocation", "userInputTemplate", "userInput");
     
     // TODO: autobind
-    this.element.addEventListener("submit", this.submit.bind(this));
+    this.component.render(this.addSubmitListener.bind(this))
   }
 
-  submit(e: Event): void {
+  private addSubmitListener(element: HTMLFormElement): HTMLFormElement {
+    element.addEventListener("submit", this.submit.bind(this))
+    return element;
+  }
+
+  private submit(e: Event): void {
     e.preventDefault();
-    const projectNameElement: HTMLInputElement = this.element.elements.namedItem("name") as HTMLInputElement;
-    const project = new Project(projectNameElement.value, "", 0);
+    const projectNameElement = this.component.element.elements.namedItem("name") as HTMLInputElement;
+    const descriptionElement = this.component.element.elements.namedItem("description") as HTMLTextAreaElement;
+    const assignedPeopleElement = this.component.element.elements.namedItem("people") as HTMLInputElement;
 
-    this.state.addProject(project)
+    const project = new Project(
+      projectNameElement.value,
+      descriptionElement.value,
+      +assignedPeopleElement.value
+    );
 
-    this.element.reset();
+    this.app.addProject(project)
+    this.component.element.reset();
   }
 }
 

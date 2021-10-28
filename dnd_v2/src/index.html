@@ -7,12 +7,25 @@
   </head>
 
   <body>
-    <form id="userInput">
-      <div>
-        <label for="name">Name</label>
-        <input type="text" name="name">
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <template id="userInputTemplate">
+      <form>
+        <div>
+          <label for="name">Name</label>
+          <input type="text" name="name">
+        </div>
+        <div>
+          <label for="description">Description</label>
+          <textarea autocomplete="off" rows=5 name="description"></textarea>
+        </div>
+        <div>
+          <label for="people">Assigned persons</label>
+          <input type="number" name="people">
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </template>
+    <div id="userInputLocation">
+    <!-- TS will insert the form here -->
+    </div>
   </body>
 </html>
